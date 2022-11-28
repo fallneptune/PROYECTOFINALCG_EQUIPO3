@@ -1,0 +1,60 @@
+﻿  MainPrueba.cpp
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(207,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(257,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(258,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(259,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(270,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(271,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(272,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(283,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(284,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(285,22): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(368,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(531,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(532,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(536,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(537,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(539,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\ProyectoFinal\MainPrueba.cpp(540,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+soil2-debug.lib(etc1_utils.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(etc1_utils.obj)' or at 'C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_DXT.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_DXT.obj)' or at 'C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_helper.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_helper.obj)' or at 'C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(SOIL2.obj)' or at 'C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\Debug\soil2-debug.pdb'; linking object as if no debug info
+  ProyectoFinal.vcxproj -> C:\Users\danie\OneDrive\Documentos\GitHub\316209513_PROYECTOFINAL2023-1_12\ProyectoFinal\Debug\ProyectoFinal.exe
