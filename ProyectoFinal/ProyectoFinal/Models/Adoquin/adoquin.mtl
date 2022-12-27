@@ -1,0 +1,105 @@
+newmtl Fachada1:pasted__pasted__pasted__phong1SG2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__pasted__pasted__phong1SG4
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__pasted__pasted__phong1SG6
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__pasted__phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__pasted__phong1SG2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__phong1SG2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__phong1SG3
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:pasted__phong1SG5
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Fachada1:phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Brick_wall_1_001_baseColor.jpeg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl phong3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Pavement_BaseColor.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
