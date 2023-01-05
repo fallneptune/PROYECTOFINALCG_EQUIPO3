@@ -61,6 +61,10 @@ glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
 glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 
 bool active;
+//_______VARIABLES_______//
+//Para animación en estanque
+float tiempoM;
+float speedM = 0.9;
 //Para animacion de Mariposa
 float marip = 0.0f, maripI = 0.0f, maripD = 0.0f, rotaMod = 180;
 bool recorrido1 = true;
@@ -219,7 +223,12 @@ int main()
 	Shader Anim("Shaders/anim2.vs", "Shaders/anim2.frag");
 	Shader shaderl("Shaders/modelLoading.vs", "Shaders/modelLoading.frag");
 
-	//Model arboles((char*)"Models/pfinal/prueba.obj");
+	Shader animShaderM("Shaders/anim3M.vs", "Shaders/anim3M.frag");
+	Shader AnimM("Shaders/animM.vs", "Shaders/animM.frag");
+	Shader Anim2M("Shaders/anim2M.vs", "Shaders/anim2M.frag");
+	
+
+	Model arboles((char*)"Models/pfinal/prueba.obj");
 	Model caja((char*)"Models/pfinal/caja.obj");
 	Model bandeja((char*)"Models/pfinal/bandeja.obj");
 	Model globo((char*)"Models/pfinal/globo.obj");
@@ -576,7 +585,7 @@ int main()
 		glm::mat4 model(1);
 		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//arboles.Draw(lightingShader);
+		arboles.Draw(lightingShader);
 		glBindVertexArray(0);
 
 		//CAJA
@@ -635,11 +644,11 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		fachada.Draw(lightingShader);
 
-		/*model = glm::mat4(1);
+		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-148.0f, 0.0f, -244.0f));
 		model = glm::scale(model, glm::vec3(8.105f, 6.033f, 6.569f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		adoquin.Draw(lightingShader);*/
+		adoquin.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-167.226f, 0.0f, -214.951f));
@@ -694,7 +703,26 @@ int main()
 		model = glm::scale(model, glm::vec3(9.0f, 9.0f, 9.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		planta.Draw(lightingShader);
-		
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-135.445f, 0.0f, -169.007f));
+		model = glm::scale(model, glm::vec3(9.0f, 9.0f, 9.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piedra2.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-102.749f, 0.0f, -188.474f));
+		model = glm::scale(model, glm::vec3(10.241f, 10.241f, 10.241f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piedra2.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-84.425f, 2.14f, -197.669f));
+		model = glm::scale(model, glm::vec3(8.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piedra2.Draw(shaderl);
+
+		/*-----ANIMACIONES -------*/
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-60.0f, sin(marip + (3.1416 * 2)), maripI));
 		model = glm::rotate(model, glm::radians(rotaMod), glm::vec3(0.0f, 1.0f, 0.0));
@@ -707,7 +735,7 @@ int main()
 		model = glm::rotate(model, glm::radians(rotaMod), glm::vec3(0.0f, 1.0f, 0.0));
 		glUniformMatrix4fv(glGetUniformLocation(shaderl.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Mariposa.Draw(shaderl);
-		/*-----ANIMACIONES -------*/
+		
 		glBindVertexArray(0);
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-90.0f, sin(marip + (3.1416 * 2)), maripI));
@@ -720,10 +748,70 @@ int main()
 		model = glm::translate(model, glm::vec3(-157.0f, 3.0f, -177.0f));
 		model = glm::translate(model, glm::vec3(movX, (-pow((movX), 2) / 8) + 1, 0.0f));
 		model = glm::rotate(model, glm::radians(rotaMod2), glm::vec3(0.0f, 1.0f, 0.0));
-		model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+		model = glm::scale(model, glm::vec3(3.5f));
 		glUniformMatrix4fv(glGetUniformLocation(shaderl.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		pez.Draw(shaderl);
 		
+		/*------------USO DE SHADERS ANIMM Y ANIM2M PARA LIRIO Y AGUA-------------*/
+
+		AnimM.Use();
+		//vamos a enviar el valor de tiempo al shader
+		tiempoM = glfwGetTime() * speedM;
+
+		// Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+		modelLoc = glGetUniformLocation(AnimM.Program, "model");
+		viewLoc = glGetUniformLocation(AnimM.Program, "view");
+		projLoc = glGetUniformLocation(AnimM.Program, "projection");
+		// Set matrices
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		model = glm::mat4(1);
+		//Aqui se envia el valor del tiempo
+		model = glm::translate(model, glm::vec3(-153.762f, 0.3f, -197.223f));
+		model = glm::scale(model, glm::vec3(2.983f));
+		glUniform1f(glGetUniformLocation(AnimM.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		Piso.Draw(AnimM);
+
+		glBindVertexArray(0);
+
+
+		Anim2M.Use();
+		//vamos a enviar el valor de tiempo al shader
+		tiempoM = glfwGetTime() * speedM;
+
+		// Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+		modelLoc = glGetUniformLocation(Anim2M.Program, "model");
+		viewLoc = glGetUniformLocation(Anim2M.Program, "view");
+		projLoc = glGetUniformLocation(Anim2M.Program, "projection");
+		// Set matrices
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		model = glm::mat4(1);
+		//Aqui se envia el valor del tiempo
+		model = glm::translate(model, glm::vec3(-125.615f, 0.3f, -169.777f));
+		model = glm::scale(model, glm::vec3(3.5f));
+		glUniform1f(glGetUniformLocation(Anim2M.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lirio.Draw(Anim2M);
+
+		model = glm::mat4(1);
+		//Aqui se envia el valor del tiempo
+		model = glm::translate(model, glm::vec3(-168.706f, 0.0f, -201.415f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		glUniform1f(glGetUniformLocation(Anim2M.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lirio.Draw(Anim2M);
+
+
+
+
+
 		//ANIMACION GLOBOS Y TENTACULOS
 		Anim.Use();
 		tiempo = glfwGetTime() * speed;
