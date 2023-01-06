@@ -231,7 +231,8 @@ int main()
 	Shader Anim2M("Shaders/anim2M.vs", "Shaders/anim2M.frag");
 	
 
-	Model arboles((char*)"Models/pfinal/prueba.obj");
+	Model maqueta1((char*)"Models/pfinal/maqueta1.obj");
+	Model maqueta2((char*)"Models/pfinal/maqueta2.obj");
 	Model caja((char*)"Models/pfinal/caja.obj");
 	Model bandeja((char*)"Models/pfinal/bandeja.obj");
 	Model globo((char*)"Models/pfinal/globo.obj");
@@ -243,6 +244,7 @@ int main()
 
 	/*_____DECLARACION DE MODELOS_____*/
 	Model Piso((char*)"Models/Sea/Sea.obj");
+	Model sea2((char*)"Models/pfinal/sea2.obj");
 	Model adoquin((char*)"Models/Adoquin/adoquin.obj");
 	Model SV((char*)"Models/Sea/salvavidas.obj");
 	Model nutria1((char*)"Models/Nutria/Nutria1.obj");
@@ -588,7 +590,13 @@ int main()
 		glm::mat4 model(1);
 		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arboles.Draw(lightingShader);
+		maqueta1.Draw(lightingShader);
+		glBindVertexArray(0);
+
+		view = camera.GetViewMatrix();
+		model = glm::mat4(1);		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		maqueta2.Draw(lightingShader);
 		glBindVertexArray(0);
 
 		//CAJA
@@ -833,6 +841,13 @@ int main()
 
 		glBindVertexArray(0);
 
+		model = glm::mat4(1);
+		glUniform1f(glGetUniformLocation(AnimM.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		sea2.Draw(AnimM);
+
+		glBindVertexArray(0);
 
 		Anim2M.Use();
 		//vamos a enviar el valor de tiempo al shader
