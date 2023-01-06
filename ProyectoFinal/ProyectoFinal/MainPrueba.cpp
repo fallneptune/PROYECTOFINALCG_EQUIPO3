@@ -233,6 +233,7 @@ int main()
 
 	Model maqueta1((char*)"Models/pfinal/maqueta1.obj");
 	Model maqueta2((char*)"Models/pfinal/maqueta2.obj");
+	Model delfin((char*)"Models/pfinal/delfin.obj");
 	Model caja((char*)"Models/pfinal/caja.obj");
 	Model bandeja((char*)"Models/pfinal/bandeja.obj");
 	Model globo((char*)"Models/pfinal/globo.obj");
@@ -605,6 +606,13 @@ int main()
 		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja.Draw(lightingShader);
+		glBindVertexArray(0);
+
+		model = glm::mat4(1);
+		view = camera.GetViewMatrix();
+		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		delfin.Draw(lightingShader);
 		glBindVertexArray(0);
 
 		model = glm::mat4(1);
