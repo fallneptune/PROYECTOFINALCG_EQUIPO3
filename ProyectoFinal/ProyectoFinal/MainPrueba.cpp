@@ -74,6 +74,9 @@ bool recorrido2 = false;
 float movX = -9.83f, movY = 0.0f, movZ = 0.0f;
 float  rotaMod2 = 180;
 bool cambio_sentido = false;
+//Rotacion de banca
+float rotaMod1 = 270;
+float rotaMod3 = 45;
 
 
 // Deltatime
@@ -722,6 +725,58 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		piedra2.Draw(shaderl);
 
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-175.344f, 0.0f, -304.513f));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-106.216f, 0.0f, -304.513));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-74.912f, 0.0f, -250.805f));
+		model = glm::rotate(model, glm::radians(rotaMod1), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-74.912f, 0.0f, -188.578f));
+		model = glm::rotate(model, glm::radians(rotaMod1), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-139.6f, 0.0f, -306.561f));
+		model = glm::scale(model, glm::vec3(6.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lampara.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-75.719f, 0.0f, -222.748f));
+		model = glm::rotate(model, glm::radians(rotaMod1), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(6.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lampara.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-160.6f, 0.0f, -247.1f));
+		model = glm::scale(model, glm::vec3(4.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nutria1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-184.8f, 0.0f, -213.176f));
+		model = glm::rotate(model, glm::radians(rotaMod3), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(4.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nutria1.Draw(shaderl);
+
 		/*-----ANIMACIONES -------*/
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-60.0f, sin(marip + (3.1416 * 2)), maripI));
@@ -807,9 +862,6 @@ int main()
 		glUniform1f(glGetUniformLocation(Anim2M.Program, "time"), tiempoM);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		lirio.Draw(Anim2M);
-
-
-
 
 
 		//ANIMACION GLOBOS Y TENTACULOS
