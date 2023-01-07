@@ -1,0 +1,28 @@
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Marble_5_BaseColor.jpg
+map_Ka Marble_5_AmbientOcclusion.jpg
+bump  -bm 1 Marble_5_Normal.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl phong2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 0.75 0.75 0.75
+map_Kd Water_001_COLOR.jpg
+bump  -bm 1 Water_001_NORM.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Water_001_SPEC.jpg
+Ns 18.00

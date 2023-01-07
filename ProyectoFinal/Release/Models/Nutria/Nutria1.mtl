@@ -1,0 +1,27 @@
+newmtl otter:Material_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd cafeObscuro.png
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 225.00
+newmtl otter:Material_003
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd negrocafesoso.png
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 225.00
+newmtl otter:Material_005
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd PechoNutria.png
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 225.00

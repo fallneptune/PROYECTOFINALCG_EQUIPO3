@@ -61,6 +61,22 @@ glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
 glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 
 bool active;
+//_______VARIABLES_______//
+//Para animación en estanque
+float tiempoM;
+float speedM = 0.9;
+//Para animacion de Mariposa
+float marip = 0.0f, maripI = 0.0f, maripD = 0.0f, rotaMod = 180;
+bool recorrido1 = true;
+bool recorrido2 = false;
+
+//Animación de pez saliendo del agua
+float movX = -9.83f, movY = 0.0f, movZ = 0.0f;
+float  rotaMod2 = 180;
+bool cambio_sentido = false;
+//Rotacion de banca
+float rotaMod1 = 270;
+float rotaMod3 = 45;
 
 
 // Deltatime
@@ -210,7 +226,14 @@ int main()
 	Shader Anim("Shaders/anim2.vs", "Shaders/anim2.frag");
 	Shader shaderl("Shaders/modelLoading.vs", "Shaders/modelLoading.frag");
 
-	Model arboles((char*)"Models/pfinal/prueba.obj");
+	Shader animShaderM("Shaders/anim3M.vs", "Shaders/anim3M.frag");
+	Shader AnimM("Shaders/animM.vs", "Shaders/animM.frag");
+	Shader Anim2M("Shaders/anim2M.vs", "Shaders/anim2M.frag");
+	
+
+	Model maqueta1((char*)"Models/pfinal/maqueta1.obj");
+	Model maqueta2((char*)"Models/pfinal/maqueta2.obj");
+	Model delfin((char*)"Models/pfinal/delfin.obj");
 	Model caja((char*)"Models/pfinal/caja.obj");
 	Model bandeja((char*)"Models/pfinal/bandeja.obj");
 	Model globo((char*)"Models/pfinal/globo.obj");
@@ -219,6 +242,28 @@ int main()
 	Model tentaculos((char*)"Models/pfinal/tentaculos.obj");
 	Model tiburon((char*)"Models/pfinal/tiburon.obj");
 	Model mandibula((char*)"Models/pfinal/mandibula.obj");
+
+	/*_____DECLARACION DE MODELOS_____*/
+	Model Piso((char*)"Models/Sea/Sea.obj");
+	Model sea2((char*)"Models/pfinal/sea2.obj");
+	Model adoquin((char*)"Models/Adoquin/adoquin.obj");
+	Model SV((char*)"Models/Sea/salvavidas.obj");
+	Model nutria1((char*)"Models/Nutria/Nutria1.obj");
+	Model banca1((char*)"Models/Banca/Banca2.obj");
+	Model piedra1((char*)"Models/Piedra/Piedra.obj");
+	Model pasto((char*)"Models/Pasto2/Pasto.obj");
+	Model tronco((char*)"Models/Tronco/tronco.obj");
+	Model arbol((char*)"Models/Arbol/arbol1.obj");
+	Model lampara((char*)"Models/Lampara/lampara.obj");
+	Model fachada((char*)"Models/Fachada/Fachada1.obj");
+	Model Mariposa((char*)"Models/Mariposa/Mariposa.obj");
+	Model fuenteagua((char*)"Models/Fuente/FuenteAgua.obj");
+	Model fuente((char*)"Models/Fuente/Fuente.obj");
+	Model pez((char*)"Models/Pez/pez.obj");
+	Model arbol2((char*)"Models/Ambiente/arbol2.obj");
+	Model piedra2((char*)"Models/Ambiente/piedra2.obj");
+	Model planta((char*)"Models/Ambiente/planta.obj");
+	Model lirio((char*)"Models/Lirio/liriosR.obj");
 
 	// Build and compile our shader program
 
@@ -546,14 +591,28 @@ int main()
 		glm::mat4 model(1);
 		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arboles.Draw(lightingShader);
+		maqueta1.Draw(lightingShader);
 		glBindVertexArray(0);
+
+		view = camera.GetViewMatrix();
+		model = glm::mat4(1);		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		maqueta2.Draw(lightingShader);
+		glBindVertexArray(0);
+
 		//CAJA
 		model = glm::mat4(1);
 		view = camera.GetViewMatrix();
 		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		caja.Draw(lightingShader);
+		glBindVertexArray(0);
+
+		model = glm::mat4(1);
+		view = camera.GetViewMatrix();
+		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		delfin.Draw(lightingShader);
 		glBindVertexArray(0);
 
 		model = glm::mat4(1);
@@ -595,7 +654,239 @@ int main()
 		tiburon.Draw(lightingShader);
 		glBindVertexArray(0);
 
+		//_____USO DE LIGHTING SHADER CON FACHADA Y FUENTE____//
+		view = camera.GetViewMatrix();
+		lightingShader.Use();
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-148.0f, 0.0f, -224.0f));
+		model = glm::scale(model, glm::vec3(8.0f, 8.0f, 8.5f));
+		glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		fachada.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-148.0f, 0.0f, -244.0f));
+		model = glm::scale(model, glm::vec3(8.105f, 6.033f, 6.569f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		adoquin.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-167.226f, 0.0f, -214.951f));
+		model = glm::scale(model, glm::vec3(3.181f, 3.181f, 3.181f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		pasto.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-92.0f, 0.1f, -210.0f));
+		model = glm::scale(model, glm::vec3(11.0f, 11.0f, 11.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol2.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-87.0f, 0.1f, -236.0f));
+		model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol2.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-118.0f, 0.1f, -185.0f));
+		model = glm::scale(model, glm::vec3(9.0f, 9.0f, 9.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol2.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-122.37f, 0.1f, -145.421f));
+		model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-194.976f, 0.1f, -63.228f));
+		model = glm::scale(model, glm::vec3(9.0f, 9.0f, 9.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arbol.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-60.0f, 0.5f, -192.0f));
+		model = glm::scale(model, glm::vec3(9.0f, 9.0f, 9.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		planta.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-137.0f, 1.0f, -148.0f));
+		model = glm::scale(model, glm::vec3(8.0f, 8.0f, 8.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		planta.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-116.0f, 0.1f, -204.0f));
+		model = glm::scale(model, glm::vec3(9.0f, 9.0f, 9.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		planta.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-135.445f, 0.0f, -169.007f));
+		model = glm::scale(model, glm::vec3(9.0f, 9.0f, 9.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piedra2.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-102.749f, 0.0f, -188.474f));
+		model = glm::scale(model, glm::vec3(10.241f, 10.241f, 10.241f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piedra2.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-84.425f, 2.14f, -197.669f));
+		model = glm::scale(model, glm::vec3(8.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		piedra2.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-175.344f, 0.0f, -304.513f));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-106.216f, 0.0f, -304.513));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-74.912f, 0.0f, -250.805f));
+		model = glm::rotate(model, glm::radians(rotaMod1), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-74.912f, 0.0f, -188.578f));
+		model = glm::rotate(model, glm::radians(rotaMod1), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(3.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		banca1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-139.6f, 0.0f, -306.561f));
+		model = glm::scale(model, glm::vec3(6.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lampara.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-75.719f, 0.0f, -222.748f));
+		model = glm::rotate(model, glm::radians(rotaMod1), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(6.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lampara.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-160.6f, 0.0f, -247.1f));
+		model = glm::scale(model, glm::vec3(4.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nutria1.Draw(shaderl);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-184.8f, 0.0f, -213.176f));
+		model = glm::rotate(model, glm::radians(rotaMod3), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(4.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nutria1.Draw(shaderl);
+
+		/*-----ANIMACIONES -------*/
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-60.0f, sin(marip + (3.1416 * 2)), maripI));
+		model = glm::rotate(model, glm::radians(rotaMod), glm::vec3(0.0f, 1.0f, 0.0));
+		glUniformMatrix4fv(glGetUniformLocation(shaderl.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Mariposa.Draw(shaderl);
+
+		glBindVertexArray(0);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-40.0f, sin(marip + (3.1416 * 2)), maripI));
+		model = glm::rotate(model, glm::radians(rotaMod), glm::vec3(0.0f, 1.0f, 0.0));
+		glUniformMatrix4fv(glGetUniformLocation(shaderl.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Mariposa.Draw(shaderl);
 		
+		glBindVertexArray(0);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-90.0f, sin(marip + (3.1416 * 2)), maripI));
+		model = glm::rotate(model, glm::radians(rotaMod), glm::vec3(0.0f, 1.0f, 0.0));
+		glUniformMatrix4fv(glGetUniformLocation(shaderl.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Mariposa.Draw(shaderl);
+		glBindVertexArray(0);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-157.0f, 3.0f, -177.0f));
+		model = glm::translate(model, glm::vec3(movX, (-pow((movX), 2) / 8) + 1, 0.0f));
+		model = glm::rotate(model, glm::radians(rotaMod2), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::scale(model, glm::vec3(3.5f));
+		glUniformMatrix4fv(glGetUniformLocation(shaderl.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		pez.Draw(shaderl);
+		
+		/*------------USO DE SHADERS ANIMM Y ANIM2M PARA LIRIO Y AGUA-------------*/
+
+		AnimM.Use();
+		//vamos a enviar el valor de tiempo al shader
+		tiempoM = glfwGetTime() * speedM;
+
+		// Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+		modelLoc = glGetUniformLocation(AnimM.Program, "model");
+		viewLoc = glGetUniformLocation(AnimM.Program, "view");
+		projLoc = glGetUniformLocation(AnimM.Program, "projection");
+		// Set matrices
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		model = glm::mat4(1);
+		//Aqui se envia el valor del tiempo
+		model = glm::translate(model, glm::vec3(-153.762f, 0.3f, -197.223f));
+		model = glm::scale(model, glm::vec3(2.983f));
+		glUniform1f(glGetUniformLocation(AnimM.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		Piso.Draw(AnimM);
+
+		glBindVertexArray(0);
+
+		model = glm::mat4(1);
+		glUniform1f(glGetUniformLocation(AnimM.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		sea2.Draw(AnimM);
+
+		glBindVertexArray(0);
+
+		Anim2M.Use();
+		//vamos a enviar el valor de tiempo al shader
+		tiempoM = glfwGetTime() * speedM;
+
+		// Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+		modelLoc = glGetUniformLocation(Anim2M.Program, "model");
+		viewLoc = glGetUniformLocation(Anim2M.Program, "view");
+		projLoc = glGetUniformLocation(Anim2M.Program, "projection");
+		// Set matrices
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		model = glm::mat4(1);
+		//Aqui se envia el valor del tiempo
+		model = glm::translate(model, glm::vec3(-125.615f, 0.3f, -169.777f));
+		model = glm::scale(model, glm::vec3(3.5f));
+		glUniform1f(glGetUniformLocation(Anim2M.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lirio.Draw(Anim2M);
+
+		model = glm::mat4(1);
+		//Aqui se envia el valor del tiempo
+		model = glm::translate(model, glm::vec3(-168.706f, 0.0f, -201.415f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		glUniform1f(glGetUniformLocation(Anim2M.Program, "time"), tiempoM);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		lirio.Draw(Anim2M);
+
+
 		//ANIMACION GLOBOS Y TENTACULOS
 		Anim.Use();
 		tiempo = glfwGetTime() * speed;
@@ -649,7 +940,6 @@ int main()
 		glDisable(GL_BLEND);
 		glEnable(GL_DEPTH_TEST);
 		glBindVertexArray(0);
-
 
 		// Also draw the lamp object, again binding the appropriate shader
 		lampShader.Use();
@@ -755,6 +1045,63 @@ void animacion()
 		}
 
 	}
+
+	/*_____ANIMACION MARIPOSA MOV SENOIDAL____*/
+	if (recorrido1) {
+		//Movimiento senoidal
+		marip += 0.2f;
+		maripI -= 0.02f;
+		maripD += 0.02f;
+		rotaMod = 180;
+
+		if (maripI <= -15.0f) {
+			recorrido1 = false;
+			recorrido2 = true;
+		}
+	}
+
+	if (recorrido2) {
+		maripI += 0.02f;
+		maripD -= 0.02f;
+		rotaMod = 0;
+		//Movimiento senoidal
+		marip += 0.2f;
+
+		if (maripI >= 0.0f) {
+			recorrido2 = false;
+			recorrido1 = true;
+		}
+	}
+
+	//Pez Saltando del Agua
+
+	if (recorrido1) {
+		/*	Movimiento senoidal
+			movZ += 0.01f;*/
+		movX += 0.02f;
+		movY += 0.02f;
+		rotaMod2 = 180;
+		if (movY >= 15.79f && movX >= 5.91) {
+			recorrido1 = false;
+			recorrido2 = true;
+		}
+		printf("Avanzo en Y: %.2f\n", movY);
+		printf("Avanzo en X: %.2f\n", movX);
+	}
+	if (recorrido2) {
+		/*	Movimiento senoidal
+			movZ += 0.01f;*/
+		movX -= 0.02f;
+		movY -= 0.02f;
+		rotaMod2 = 0;
+		if (movY <= 0.02f && movX <= 9.81f) {
+			recorrido2 = false;
+			recorrido1 = true;
+		}
+		printf("Avanzo Recorrido2 en Y: %.2f\n", movY);
+		printf("Avanzo Recorrido2 en X: %.2f\n", movX);
+	}
+
 }
 
 
